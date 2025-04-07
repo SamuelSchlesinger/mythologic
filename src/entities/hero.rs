@@ -1,25 +1,25 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a mythological hero or protagonist
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Hero {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Primary name
-    name: String,
+    pub name: String,
     /// Description of the hero
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Whether the hero is divine, semi-divine, or mortal
-    origin: HeroOrigin,
+    pub origin: HeroOrigin,
     /// Notable achievements or quests
-    achievements: Vec<String>,
+    pub achievements: Vec<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Hero {

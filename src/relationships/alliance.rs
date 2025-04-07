@@ -1,18 +1,17 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity};
 use crate::relationships::Relationship;
 
 /// Represents an alliance relationship between mythological entities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AllianceRelationship {
     /// Base relationship
-    relationship: Relationship,
+    pub relationship: Relationship,
     /// Type of alliance
-    alliance_type: AllianceType,
+    pub alliance_type: AllianceType,
     /// Purpose of the alliance
-    purpose: String,
+    pub purpose: String,
     /// Duration of the alliance, if known
-    duration: Option<String>,
+    pub duration: Option<String>,
 }
 
 impl AllianceRelationship {

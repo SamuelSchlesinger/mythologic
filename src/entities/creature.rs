@@ -1,28 +1,28 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a mythological creature or monster
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Creature {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Primary name
-    name: String,
+    pub name: String,
     /// Description of the creature
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Type of creature
-    creature_type: CreatureType,
+    pub creature_type: CreatureType,
     /// Habitat or dwelling place
-    habitat: HashSet<String>,
+    pub habitat: HashSet<String>,
     /// Special abilities or powers
-    abilities: Vec<String>,
+    pub abilities: Vec<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Creature {

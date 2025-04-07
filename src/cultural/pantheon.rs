@@ -1,28 +1,28 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a pantheon of deities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Pantheon {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Name of the pantheon
-    name: String,
+    pub name: String,
     /// Description of the pantheon
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Primary deities in this pantheon
-    primary_deities: HashSet<MythId>,
+    pub primary_deities: HashSet<MythId>,
     /// Secondary deities in this pantheon
-    secondary_deities: HashSet<MythId>,
+    pub secondary_deities: HashSet<MythId>,
     /// Cosmological structure
-    cosmology: Option<String>,
+    pub cosmology: Option<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Pantheon {

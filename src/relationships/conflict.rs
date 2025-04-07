@@ -1,16 +1,15 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity};
 use crate::relationships::Relationship;
 
 /// Represents a conflict relationship between mythological entities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ConflictRelationship {
     /// Base relationship
-    relationship: Relationship,
+    pub relationship: Relationship,
     /// Type of conflict
-    conflict_type: ConflictType,
+    pub conflict_type: ConflictType,
     /// Outcome of the conflict, if resolved
-    outcome: Option<ConflictOutcome>,
+    pub outcome: Option<ConflictOutcome>,
 }
 
 impl ConflictRelationship {

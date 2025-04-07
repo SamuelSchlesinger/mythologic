@@ -1,14 +1,13 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity};
 use crate::relationships::Relationship;
 
 /// Represents a family relationship between mythological entities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FamilyRelationship {
     /// Base relationship
-    relationship: Relationship,
+    pub relationship: Relationship,
     /// Type of family relationship
-    family_type: FamilyRelationshipType,
+    pub family_type: FamilyRelationshipType,
 }
 
 impl FamilyRelationship {

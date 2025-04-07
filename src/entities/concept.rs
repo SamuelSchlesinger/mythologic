@@ -1,25 +1,25 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents an abstract mythological concept
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Concept {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Primary name
-    name: String,
+    pub name: String,
     /// Description of the concept
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Type of concept
-    concept_type: ConceptType,
+    pub concept_type: ConceptType,
     /// Manifestations or representations
-    manifestations: Vec<String>,
+    pub manifestations: Vec<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Concept {

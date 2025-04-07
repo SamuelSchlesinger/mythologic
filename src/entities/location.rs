@@ -1,27 +1,27 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a mythological location or realm
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Location {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Primary name
-    name: String,
+    pub name: String,
     /// Description of the location
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Type of location
-    location_type: LocationType,
+    pub location_type: LocationType,
     /// Physical or metaphysical characteristics
-    characteristics: Vec<String>,
+    pub characteristics: Vec<String>,
     /// Accessibility (how can it be reached)
-    accessibility: Vec<String>,
+    pub accessibility: Vec<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Location {

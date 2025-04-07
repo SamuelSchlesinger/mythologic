@@ -1,29 +1,29 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a mythological artifact or object of power
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Artifact {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Primary name
-    name: String,
+    pub name: String,
     /// Description of the artifact
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Type of artifact
-    artifact_type: ArtifactType,
+    pub artifact_type: ArtifactType,
     /// Powers or properties
-    powers: Vec<String>,
+    pub powers: Vec<String>,
     /// Creator of the artifact
-    creator: Option<String>,
+    pub creator: Option<String>,
     /// Current or last known owner
-    owner: Option<String>,
+    pub owner: Option<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Artifact {

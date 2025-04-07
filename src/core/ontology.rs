@@ -3,7 +3,7 @@ use crate::core::{MythId, MythEntity};
 
 /// The main ontology that holds all mythological entities and their relationships
 pub struct MythOntology {
-    entities: HashMap<MythId, Box<dyn MythEntity>>,
+    entities: HashMap<MythId, MythEntity>,
 }
 
 impl MythOntology {
@@ -15,29 +15,29 @@ impl MythOntology {
     }
     
     /// Add an entity to the ontology
-    pub fn add_entity<T: MythEntity + 'static>(&mut self, entity: T) {
+    pub fn add_entity(&mut self, entity: MythEntity) {
         let id = entity.id().clone();
-        self.entities.insert(id, Box::new(entity));
+        self.entities.insert(id, entity);
     }
     
     /// Get an entity by its ID
-    pub fn get_entity(&self, id: &MythId) -> Option<&dyn MythEntity> {
-        self.entities.get(id).map(|e| e.as_ref())
+    pub fn get_entity(&self, id: &MythId) -> Option<&MythEntity> {
+        self.entities.get(id)
     }
     
     /// Get a mutable reference to an entity by its ID
-    pub fn get_entity_mut(&mut self, id: &MythId) -> Option<&mut dyn MythEntity + '_> {
-        self.entities.get_mut(id).map(|e| e.as_mut())
+    pub fn get_entity_mut(&mut self, id: &MythId) -> Option<&mut MythEntity> {
+        self.entities.get_mut(id)
     }
     
     /// Remove an entity from the ontology
-    pub fn remove_entity(&mut self, id: &MythId) -> Option<Box<dyn MythEntity>> {
+    pub fn remove_entity(&mut self, id: &MythId) -> Option<MythEntity> {
         self.entities.remove(id)
     }
     
     /// Get all entities in the ontology
-    pub fn all_entities(&self) -> Vec<&dyn MythEntity> {
-        self.entities.values().map(|e| e.as_ref()).collect()
+    pub fn all_entities(&self) -> Vec<&MythEntity> {
+        self.entities.values().collect()
     }
     
     /// Count the number of entities in the ontology

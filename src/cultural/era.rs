@@ -1,27 +1,27 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a mythological era or age
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MythologicalEra {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Name of the era
-    name: String,
+    pub name: String,
     /// Description of the era
-    description: String,
+    pub description: String,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Order in the sequence of eras
-    sequence_order: Option<u32>,
+    pub sequence_order: Option<u32>,
     /// Defining characteristics
-    characteristics: Vec<String>,
+    pub characteristics: Vec<String>,
     /// How this era ended
-    end_event: Option<String>,
+    pub end_event: Option<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl MythologicalEra {

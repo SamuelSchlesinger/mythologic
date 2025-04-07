@@ -1,32 +1,32 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a deity or god/goddess in mythology
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Deity {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Primary name
-    name: String,
+    pub name: String,
     /// Alternative names or epithets
-    alternative_names: Vec<String>,
+    pub alternative_names: Vec<String>,
     /// Description of the deity
-    description: String,
+    pub description: String,
     /// Domains of influence (e.g., war, love, wisdom)
-    domains: HashSet<String>,
+    pub domains: HashSet<String>,
     /// Cultural origin
-    culture: String,
+    pub culture: String,
     /// Pantheon this deity belongs to
-    pantheon: Option<String>,
+    pub pantheon: Option<String>,
     /// Gender of the deity
-    gender: Gender,
+    pub gender: Gender,
     /// Importance level in their pantheon
-    importance: DeityImportance,
+    pub importance: DeityImportance,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Deity {

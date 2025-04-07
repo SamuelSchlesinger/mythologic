@@ -1,5 +1,4 @@
-use crate::core::MythOntology;
-use crate::core::traits::MythEntity;
+use crate::core::{MythOntology, MythEntity};
 use crate::entities::{Deity, Gender, DeityImportance};
 use crate::cultural::{Pantheon, Culture, TimePeriod};
 use crate::relationships::{FamilyRelationship, FamilyRelationshipType};
@@ -55,7 +54,7 @@ pub fn create_greek_example() -> MythOntology {
     athena.add_alternative_name("Minerva");
     
     // Add source to metadata
-    let mut source = crate::core::Source {
+    let source = crate::core::Source {
         title: "Theogony".to_string(),
         author: Some("Hesiod".to_string()),
         year: Some(-700),
@@ -63,14 +62,21 @@ pub fn create_greek_example() -> MythOntology {
         url: None,
         notes: Some("Ancient Greek poem describing the origins of the gods".to_string()),
     };
-    zeus.metadata_mut().add_source(source.clone());
-    hera.metadata_mut().add_source(source.clone());
-    athena.metadata_mut().add_source(source);
     
-    // Create family relationships
-    let zeus_id = zeus.id().clone();
-    let hera_id = hera.id().clone();
-    let athena_id = athena.id().clone();
+    // Convert to MythEntity enum
+    let mut zeus_entity = MythEntity::Deity(zeus);
+    let mut hera_entity = MythEntity::Deity(hera);
+    let mut athena_entity = MythEntity::Deity(athena);
+    
+    // Add source to metadata
+    zeus_entity.metadata_mut().add_source(source.clone());
+    hera_entity.metadata_mut().add_source(source.clone());
+    athena_entity.metadata_mut().add_source(source);
+    
+    // Get IDs
+    let zeus_id = zeus_entity.id().clone();
+    let hera_id = hera_entity.id().clone();
+    let athena_id = athena_entity.id().clone();
     
     // Zeus and Hera are spouses
     let zeus_hera_relationship = FamilyRelationship::new(
@@ -128,13 +134,13 @@ pub fn create_greek_example() -> MythOntology {
     });
     
     // Add entities to ontology
-    ontology.add_entity(zeus);
-    ontology.add_entity(hera);
-    ontology.add_entity(athena);
-    ontology.add_entity(zeus_hera_relationship);
-    ontology.add_entity(zeus_athena_relationship);
-    ontology.add_entity(olympian_pantheon);
-    ontology.add_entity(greek_culture);
+    ontology.add_entity(zeus_entity);
+    ontology.add_entity(hera_entity);
+    ontology.add_entity(athena_entity);
+    ontology.add_entity(MythEntity::FamilyRelationship(zeus_hera_relationship));
+    ontology.add_entity(MythEntity::FamilyRelationship(zeus_athena_relationship));
+    ontology.add_entity(MythEntity::Pantheon(olympian_pantheon));
+    ontology.add_entity(MythEntity::Culture(greek_culture));
     
     ontology
 }
@@ -191,7 +197,7 @@ pub fn create_norse_example() -> MythOntology {
     freyja.set_pantheon("Vanir");
     
     // Add source to metadata
-    let mut source = crate::core::Source {
+    let source = crate::core::Source {
         title: "Poetic Edda".to_string(),
         author: None,
         year: Some(1200),
@@ -199,13 +205,20 @@ pub fn create_norse_example() -> MythOntology {
         url: None,
         notes: Some("Collection of Old Norse poems from the Icelandic medieval manuscript Codex Regius".to_string()),
     };
-    odin.metadata_mut().add_source(source.clone());
-    thor.metadata_mut().add_source(source.clone());
-    freyja.metadata_mut().add_source(source);
     
-    // Create family relationships
-    let odin_id = odin.id().clone();
-    let thor_id = thor.id().clone();
+    // Convert to MythEntity enum
+    let mut odin_entity = MythEntity::Deity(odin);
+    let mut thor_entity = MythEntity::Deity(thor);
+    let mut freyja_entity = MythEntity::Deity(freyja);
+    
+    // Add source to metadata
+    odin_entity.metadata_mut().add_source(source.clone());
+    thor_entity.metadata_mut().add_source(source.clone());
+    freyja_entity.metadata_mut().add_source(source);
+    
+    // Get IDs
+    let odin_id = odin_entity.id().clone();
+    let thor_id = thor_entity.id().clone();
     
     // Odin is Thor's father
     let odin_thor_relationship = FamilyRelationship::new(
@@ -244,12 +257,12 @@ pub fn create_norse_example() -> MythOntology {
     });
     
     // Add entities to ontology
-    ontology.add_entity(odin);
-    ontology.add_entity(thor);
-    ontology.add_entity(freyja);
-    ontology.add_entity(odin_thor_relationship);
-    ontology.add_entity(aesir_pantheon);
-    ontology.add_entity(norse_culture);
+    ontology.add_entity(odin_entity);
+    ontology.add_entity(thor_entity);
+    ontology.add_entity(freyja_entity);
+    ontology.add_entity(MythEntity::FamilyRelationship(odin_thor_relationship));
+    ontology.add_entity(MythEntity::Pantheon(aesir_pantheon));
+    ontology.add_entity(MythEntity::Culture(norse_culture));
     
     ontology
 }

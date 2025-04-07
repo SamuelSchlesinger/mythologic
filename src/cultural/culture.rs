@@ -1,28 +1,28 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a cultural context for mythological entities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Culture {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Name of the culture
-    name: String,
+    pub name: String,
     /// Description of the culture
-    description: String,
+    pub description: String,
     /// Geographic regions associated with this culture
-    regions: HashSet<String>,
+    pub regions: HashSet<String>,
     /// Historical time periods
-    time_periods: Vec<TimePeriod>,
+    pub time_periods: Vec<TimePeriod>,
     /// Major influences on this culture
-    influences: Vec<String>,
+    pub influences: Vec<String>,
     /// Languages associated with this culture
-    languages: HashSet<String>,
+    pub languages: HashSet<String>,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Culture {

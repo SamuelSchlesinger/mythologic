@@ -1,28 +1,28 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata, MythEntity, Relatable};
+use crate::core::{MythId, Metadata};
 
 /// Represents a geographic region in mythology
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MythologicalRegion {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Name of the region
-    name: String,
+    pub name: String,
     /// Description of the region
-    description: String,
+    pub description: String,
     /// Cultural associations
-    cultures: HashSet<String>,
+    pub cultures: HashSet<String>,
     /// Geographic features
-    features: Vec<String>,
+    pub features: Vec<String>,
     /// Modern-day equivalent locations
-    modern_locations: HashSet<String>,
+    pub modern_locations: HashSet<String>,
     /// Significance in mythology
-    significance: String,
+    pub significance: String,
     /// Relationships with other entities
-    relationships: Vec<MythId>,
+    pub relationships: Vec<MythId>,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl MythologicalRegion {

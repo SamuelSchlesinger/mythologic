@@ -1,27 +1,27 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity};
+use crate::core::{MythId, Metadata};
 
 /// Represents a relationship between mythological entities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Relationship {
     /// Unique identifier
-    id: MythId,
+    pub id: MythId,
     /// Name of the relationship
-    name: String,
+    pub name: String,
     /// Description of the relationship
-    description: String,
+    pub description: String,
     /// Source entity ID
-    source_id: MythId,
+    pub source_id: MythId,
     /// Target entity ID
-    target_id: MythId,
+    pub target_id: MythId,
     /// Type of relationship
-    relationship_type: RelationshipType,
+    pub relationship_type: RelationshipType,
     /// Strength or importance of the relationship (0.0-1.0)
-    strength: f32,
+    pub strength: f32,
     /// Whether the relationship is bidirectional
-    bidirectional: bool,
+    pub bidirectional: bool,
     /// Metadata
-    metadata: Metadata,
+    pub metadata: Metadata,
 }
 
 impl Relationship {

@@ -1,20 +1,19 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata, MythEntity};
 use crate::relationships::Relationship;
 
 /// Represents a transformation relationship between mythological entities
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransformationRelationship {
     /// Base relationship
-    relationship: Relationship,
+    pub relationship: Relationship,
     /// Type of transformation
-    transformation_type: TransformationType,
+    pub transformation_type: TransformationType,
     /// Cause of the transformation
-    cause: String,
+    pub cause: String,
     /// Whether the transformation is permanent
-    permanent: bool,
+    pub permanent: bool,
     /// Whether the transformation is reversible
-    reversible: bool,
+    pub reversible: bool,
 }
 
 impl TransformationRelationship {

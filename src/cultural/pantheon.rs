@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId, CosmologyId};
 
 /// Represents a pantheon of deities
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -12,13 +12,15 @@ pub struct Pantheon {
     /// Description of the pantheon
     pub description: String,
     /// Cultural origin
-    pub culture: String,
+    pub culture: CultureId,
     /// Primary deities in this pantheon
     pub primary_deities: HashSet<MythId>,
     /// Secondary deities in this pantheon
     pub secondary_deities: HashSet<MythId>,
     /// Cosmological structure
-    pub cosmology: Option<String>,
+    pub cosmology: Option<CosmologyId>,
+    /// Founding myth of the pantheon
+    pub founding_myth: Option<String>,
     /// Relationships with other entities
     pub relationships: Vec<MythId>,
     /// Metadata
@@ -32,10 +34,11 @@ impl Pantheon {
             id: MythId::new(),
             name: name.to_string(),
             description: description.to_string(),
-            culture: culture.to_string(),
+            culture: CultureId::new(culture),
             primary_deities: HashSet::new(),
             secondary_deities: HashSet::new(),
             cosmology: None,
+            founding_myth: None,
             relationships: Vec::new(),
             metadata: Metadata::new(),
         }
@@ -53,11 +56,11 @@ impl Pantheon {
     
     /// Set the cosmology
     pub fn set_cosmology(&mut self, cosmology: &str) {
-        self.cosmology = Some(cosmology.to_string());
+        self.cosmology = Some(CosmologyId::new(cosmology));
     }
     
     /// Get the culture
-    pub fn culture(&self) -> &str {
+    pub fn culture(&self) -> &CultureId {
         &self.culture
     }
     
@@ -72,13 +75,23 @@ impl Pantheon {
     }
     
     /// Get the cosmology
-    pub fn cosmology(&self) -> Option<&str> {
-        self.cosmology.as_deref()
+    pub fn cosmology(&self) -> Option<&CosmologyId> {
+        self.cosmology.as_ref()
     }
     
     /// Check if a deity is part of this pantheon
     pub fn contains_deity(&self, deity_id: &MythId) -> bool {
         self.primary_deities.contains(deity_id) || self.secondary_deities.contains(deity_id)
+    }
+    
+    /// Set the founding myth
+    pub fn set_founding_myth(&mut self, myth: &str) {
+        self.founding_myth = Some(myth.to_string());
+    }
+    
+    /// Get the founding myth
+    pub fn founding_myth(&self) -> Option<&str> {
+        self.founding_myth.as_deref()
     }
 }
 

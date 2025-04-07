@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId, CharacteristicId, EventId};
 
 /// Represents a mythological era or age
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -11,13 +11,13 @@ pub struct MythologicalEra {
     /// Description of the era
     pub description: String,
     /// Cultural origin
-    pub culture: String,
+    pub culture: CultureId,
     /// Order in the sequence of eras
     pub sequence_order: Option<u32>,
     /// Defining characteristics
-    pub characteristics: Vec<String>,
+    pub characteristics: Vec<CharacteristicId>,
     /// How this era ended
-    pub end_event: Option<String>,
+    pub end_event: Option<EventId>,
     /// Relationships with other entities
     pub relationships: Vec<MythId>,
     /// Metadata
@@ -31,7 +31,7 @@ impl MythologicalEra {
             id: MythId::new(),
             name: name.to_string(),
             description: description.to_string(),
-            culture: culture.to_string(),
+            culture: CultureId::new(culture),
             sequence_order: None,
             characteristics: Vec::new(),
             end_event: None,
@@ -42,7 +42,7 @@ impl MythologicalEra {
     
     /// Add a characteristic
     pub fn add_characteristic(&mut self, characteristic: &str) {
-        self.characteristics.push(characteristic.to_string());
+        self.characteristics.push(CharacteristicId::new(characteristic));
     }
     
     /// Set the sequence order
@@ -52,11 +52,11 @@ impl MythologicalEra {
     
     /// Set the end event
     pub fn set_end_event(&mut self, event: &str) {
-        self.end_event = Some(event.to_string());
+        self.end_event = Some(EventId::new(event));
     }
     
     /// Get the culture
-    pub fn culture(&self) -> &str {
+    pub fn culture(&self) -> &CultureId {
         &self.culture
     }
     
@@ -66,13 +66,13 @@ impl MythologicalEra {
     }
     
     /// Get the characteristics
-    pub fn characteristics(&self) -> &[String] {
+    pub fn characteristics(&self) -> &[CharacteristicId] {
         &self.characteristics
     }
     
     /// Get the end event
-    pub fn end_event(&self) -> Option<&str> {
-        self.end_event.as_deref()
+    pub fn end_event(&self) -> Option<&EventId> {
+        self.end_event.as_ref()
     }
 }
 

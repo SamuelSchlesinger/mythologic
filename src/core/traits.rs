@@ -1,4 +1,4 @@
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId};
 use crate::entities::{Deity, Hero, Creature, Artifact, Location, Concept};
 use crate::relationships::{Relationship, FamilyRelationship, AllianceRelationship, ConflictRelationship, TransformationRelationship};
 use crate::cultural::{Culture, Pantheon, MythologicalEra, MythologicalRegion};
@@ -152,7 +152,7 @@ impl MythEntity {
     }
     
     /// Get the culture of this entity if applicable
-    pub fn culture(&self) -> Option<&str> {
+    pub fn culture(&self) -> Option<&CultureId> {
         match self {
             Self::Deity(e) => Some(&e.culture),
             Self::Hero(e) => Some(&e.culture),
@@ -164,5 +164,10 @@ impl MythEntity {
             Self::MythologicalEra(e) => Some(&e.culture),
             _ => None,
         }
+    }
+    
+    /// Get the culture name as a string if applicable
+    pub fn culture_name(&self) -> Option<&str> {
+        self.culture().map(|c| c.value())
     }
 }

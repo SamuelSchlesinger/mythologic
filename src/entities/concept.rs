@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId};
 
 /// Represents an abstract mythological concept
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -11,7 +11,7 @@ pub struct Concept {
     /// Description of the concept
     pub description: String,
     /// Cultural origin
-    pub culture: String,
+    pub culture: CultureId,
     /// Type of concept
     pub concept_type: ConceptType,
     /// Manifestations or representations
@@ -29,7 +29,7 @@ impl Concept {
             id: MythId::new(),
             name: name.to_string(),
             description: description.to_string(),
-            culture: culture.to_string(),
+            culture: CultureId::new(culture),
             concept_type: ConceptType::Unknown,
             manifestations: Vec::new(),
             relationships: Vec::new(),
@@ -48,7 +48,7 @@ impl Concept {
     }
     
     /// Get the culture
-    pub fn culture(&self) -> &str {
+    pub fn culture(&self) -> &CultureId {
         &self.culture
     }
     

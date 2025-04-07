@@ -79,5 +79,7 @@ pub enum SourceType {
     PrimaryText,
     OralTradition,
     Archaeological,
+    CompilationText,   // Collection of texts compiled together
+    LiteraryText,      // Literary works with mythological content
     Other(String),
 }

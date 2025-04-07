@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId};
 
 /// Represents a mythological creature or monster
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -12,7 +12,7 @@ pub struct Creature {
     /// Description of the creature
     pub description: String,
     /// Cultural origin
-    pub culture: String,
+    pub culture: CultureId,
     /// Type of creature
     pub creature_type: CreatureType,
     /// Habitat or dwelling place
@@ -32,7 +32,7 @@ impl Creature {
             id: MythId::new(),
             name: name.to_string(),
             description: description.to_string(),
-            culture: culture.to_string(),
+            culture: CultureId::new(culture),
             creature_type: CreatureType::Unknown,
             habitat: HashSet::new(),
             abilities: Vec::new(),
@@ -57,7 +57,7 @@ impl Creature {
     }
     
     /// Get the culture
-    pub fn culture(&self) -> &str {
+    pub fn culture(&self) -> &CultureId {
         &self.culture
     }
     

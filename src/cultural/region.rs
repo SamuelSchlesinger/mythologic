@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 use std::collections::HashSet;
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId, FeatureId, LocationId};
 
 /// Represents a geographic region in mythology
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -12,11 +12,11 @@ pub struct MythologicalRegion {
     /// Description of the region
     pub description: String,
     /// Cultural associations
-    pub cultures: HashSet<String>,
+    pub cultures: HashSet<CultureId>,
     /// Geographic features
-    pub features: Vec<String>,
+    pub features: Vec<FeatureId>,
     /// Modern-day equivalent locations
-    pub modern_locations: HashSet<String>,
+    pub modern_locations: HashSet<LocationId>,
     /// Significance in mythology
     pub significance: String,
     /// Relationships with other entities
@@ -27,7 +27,7 @@ pub struct MythologicalRegion {
 
 impl MythologicalRegion {
     /// Create a new mythological region
-    pub fn new(name: &str, description: &str, significance: &str) -> Self {
+    pub fn new(name: &str, description: &str, significance: Option<&str>) -> Self {
         Self {
             id: MythId::new(),
             name: name.to_string(),
@@ -35,39 +35,44 @@ impl MythologicalRegion {
             cultures: HashSet::new(),
             features: Vec::new(),
             modern_locations: HashSet::new(),
-            significance: significance.to_string(),
+            significance: significance.unwrap_or("Unknown significance").to_string(),
             relationships: Vec::new(),
             metadata: Metadata::new(),
         }
     }
     
+    /// Alternative constructor with all parameters
+    pub fn new_with_significance(name: &str, description: &str, significance: &str) -> Self {
+        Self::new(name, description, Some(significance))
+    }
+    
     /// Add a culture
     pub fn add_culture(&mut self, culture: &str) {
-        self.cultures.insert(culture.to_string());
+        self.cultures.insert(CultureId::new(culture));
     }
     
     /// Add a geographic feature
     pub fn add_feature(&mut self, feature: &str) {
-        self.features.push(feature.to_string());
+        self.features.push(FeatureId::new(feature));
     }
     
     /// Add a modern location
     pub fn add_modern_location(&mut self, location: &str) {
-        self.modern_locations.insert(location.to_string());
+        self.modern_locations.insert(LocationId::new(location));
     }
     
     /// Get the cultures
-    pub fn cultures(&self) -> &HashSet<String> {
+    pub fn cultures(&self) -> &HashSet<CultureId> {
         &self.cultures
     }
     
     /// Get the features
-    pub fn features(&self) -> &[String] {
+    pub fn features(&self) -> &[FeatureId] {
         &self.features
     }
     
     /// Get the modern locations
-    pub fn modern_locations(&self) -> &HashSet<String> {
+    pub fn modern_locations(&self) -> &HashSet<LocationId> {
         &self.modern_locations
     }
     

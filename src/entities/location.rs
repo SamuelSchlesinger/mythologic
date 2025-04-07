@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use crate::core::{MythId, Metadata};
+use crate::core::{MythId, Metadata, CultureId};
 
 /// Represents a mythological location or realm
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -11,7 +11,7 @@ pub struct Location {
     /// Description of the location
     pub description: String,
     /// Cultural origin
-    pub culture: String,
+    pub culture: CultureId,
     /// Type of location
     pub location_type: LocationType,
     /// Physical or metaphysical characteristics
@@ -31,7 +31,7 @@ impl Location {
             id: MythId::new(),
             name: name.to_string(),
             description: description.to_string(),
-            culture: culture.to_string(),
+            culture: CultureId::new(culture),
             location_type: LocationType::Unknown,
             characteristics: Vec::new(),
             accessibility: Vec::new(),
@@ -56,7 +56,7 @@ impl Location {
     }
     
     /// Get the culture
-    pub fn culture(&self) -> &str {
+    pub fn culture(&self) -> &CultureId {
         &self.culture
     }
     

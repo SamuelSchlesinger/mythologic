@@ -1,7 +1,10 @@
 //! Utility functions and helpers
+//! 
+//! This module provides utility functions and helpers for working with mythological ontologies.
+//! For comprehensive examples, see the `examples` module.
 
-mod examples;
 mod serialization;
+mod visualization;
 
-pub use examples::*;
 pub use serialization::*;
+pub use visualization::*;

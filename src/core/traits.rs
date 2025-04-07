@@ -16,6 +16,11 @@ pub trait MythEntity {
     
     /// Get the entity type as a string
     fn entity_type(&self) -> &'static str;
+    
+    /// Get the relationships this entity has (default empty implementation)
+    fn relationships(&self) -> Vec<MythId> {
+        Vec::new()
+    }
 }
 
 /// A trait for entities that can be related to other entities

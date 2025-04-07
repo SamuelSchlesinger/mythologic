@@ -1,4 +1,5 @@
-use crate::core::{MythOntology, Metadata};
+use crate::core::MythOntology;
+use crate::core::traits::MythEntity;
 use crate::entities::{Deity, Gender, DeityImportance};
 use crate::cultural::{Pantheon, Culture, TimePeriod};
 use crate::relationships::{FamilyRelationship, FamilyRelationshipType};

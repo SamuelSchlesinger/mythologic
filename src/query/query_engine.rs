@@ -1,5 +1,6 @@
 use std::collections::HashSet;
-use crate::core::{MythId, MythEntity, MythOntology};
+use crate::core::{MythId, MythOntology};
+use crate::core::traits::Relatable;
 use crate::query::{QueryFilter, QueryResult, QueryResultSet};
 
 /// Engine for querying the mythological ontology
@@ -52,18 +53,17 @@ impl<'a> QueryEngine<'a> {
         let mut results = Vec::new();
         
         if let Some(entity) = self.ontology.get_entity(entity_id) {
-            // First, check if the entity implements Relatable
-            if let Some(relatable) = entity.downcast_ref::<dyn crate::core::Relatable>() {
-                for related_id in relatable.relationships() {
-                    if let Some(related_entity) = self.ontology.get_entity(&related_id) {
-                        if !result_ids.contains(&related_id) {
-                            result_ids.insert(related_id.clone());
-                            results.push(QueryResult {
-                                id: related_id,
-                                name: related_entity.name().to_string(),
-                                entity_type: related_entity.entity_type().to_string(),
-                            });
-                        }
+            // Get relationships if the entity implements Relatable
+            // We can't use downcast_ref with trait objects, so we'll check for relationships directly
+            for related_id in entity.relationships() {
+                if let Some(related_entity) = self.ontology.get_entity(&related_id) {
+                    if !result_ids.contains(&related_id) {
+                        result_ids.insert(related_id.clone());
+                        results.push(QueryResult {
+                            id: related_id,
+                            name: related_entity.name().to_string(),
+                            entity_type: related_entity.entity_type().to_string(),
+                        });
                     }
                 }
             }

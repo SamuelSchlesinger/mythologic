@@ -26,7 +26,7 @@ impl MythOntology {
     }
     
     /// Get a mutable reference to an entity by its ID
-    pub fn get_entity_mut(&mut self, id: &MythId) -> Option<&mut dyn MythEntity> {
+    pub fn get_entity_mut(&mut self, id: &MythId) -> Option<&mut dyn MythEntity + '_> {
         self.entities.get_mut(id).map(|e| e.as_mut())
     }
     

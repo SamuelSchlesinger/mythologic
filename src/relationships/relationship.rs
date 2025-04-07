@@ -82,27 +82,7 @@ impl Relationship {
     }
 }
 
-impl MythEntity for Relationship {
-    fn id(&self) -> &MythId {
-        &self.id
-    }
-    
-    fn name(&self) -> &str {
-        &self.name
-    }
-    
-    fn metadata(&self) -> &Metadata {
-        &self.metadata
-    }
-    
-    fn metadata_mut(&mut self) -> &mut Metadata {
-        &mut self.metadata
-    }
-    
-    fn entity_type(&self) -> &'static str {
-        "Relationship"
-    }
-}
+// Trait implementations removed as we're using the enum approach
 
 /// Type of relationship between entities
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

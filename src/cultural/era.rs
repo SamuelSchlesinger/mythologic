@@ -76,40 +76,4 @@ impl MythologicalEra {
     }
 }
 
-impl MythEntity for MythologicalEra {
-    fn id(&self) -> &MythId {
-        &self.id
-    }
-    
-    fn name(&self) -> &str {
-        &self.name
-    }
-    
-    fn metadata(&self) -> &Metadata {
-        &self.metadata
-    }
-    
-    fn metadata_mut(&mut self) -> &mut Metadata {
-        &mut self.metadata
-    }
-    
-    fn entity_type(&self) -> &'static str {
-        "MythologicalEra"
-    }
-}
-
-impl Relatable for MythologicalEra {
-    fn relationships(&self) -> Vec<MythId> {
-        self.relationships.clone()
-    }
-    
-    fn add_relationship(&mut self, relationship_id: MythId) {
-        self.relationships.push(relationship_id);
-    }
-    
-    fn remove_relationship(&mut self, relationship_id: &MythId) -> bool {
-        let len = self.relationships.len();
-        self.relationships.retain(|id| id != relationship_id);
-        self.relationships.len() != len
-    }
-}
+// Trait implementations removed as we're using the enum approach

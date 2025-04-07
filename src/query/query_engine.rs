@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-use crate::core::{MythId, MythOntology, MythEntity};
+use crate::core::{MythId, MythOntology};
 use crate::query::{QueryFilter, QueryResult, QueryResultSet};
 
 /// Engine for querying the mythological ontology

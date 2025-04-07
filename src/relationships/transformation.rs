@@ -1,4 +1,5 @@
 use serde::{Serialize, Deserialize};
+use crate::core::MythId;
 use crate::relationships::Relationship;
 
 /// Represents a transformation relationship between mythological entities
@@ -84,27 +85,7 @@ impl TransformationRelationship {
     }
 }
 
-impl MythEntity for TransformationRelationship {
-    fn id(&self) -> &MythId {
-        self.relationship.id()
-    }
-    
-    fn name(&self) -> &str {
-        self.relationship.name()
-    }
-    
-    fn metadata(&self) -> &Metadata {
-        self.relationship.metadata()
-    }
-    
-    fn metadata_mut(&mut self) -> &mut Metadata {
-        self.relationship.metadata_mut()
-    }
-    
-    fn entity_type(&self) -> &'static str {
-        "TransformationRelationship"
-    }
-}
+// Trait implementations removed as we're using the enum approach
 
 /// Type of transformation
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

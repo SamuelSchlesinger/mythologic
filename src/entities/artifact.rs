@@ -89,43 +89,7 @@ impl Artifact {
     }
 }
 
-impl MythEntity for Artifact {
-    fn id(&self) -> &MythId {
-        &self.id
-    }
-    
-    fn name(&self) -> &str {
-        &self.name
-    }
-    
-    fn metadata(&self) -> &Metadata {
-        &self.metadata
-    }
-    
-    fn metadata_mut(&mut self) -> &mut Metadata {
-        &mut self.metadata
-    }
-    
-    fn entity_type(&self) -> &'static str {
-        "Artifact"
-    }
-}
-
-impl Relatable for Artifact {
-    fn relationships(&self) -> Vec<MythId> {
-        self.relationships.clone()
-    }
-    
-    fn add_relationship(&mut self, relationship_id: MythId) {
-        self.relationships.push(relationship_id);
-    }
-    
-    fn remove_relationship(&mut self, relationship_id: &MythId) -> bool {
-        let len = self.relationships.len();
-        self.relationships.retain(|id| id != relationship_id);
-        self.relationships.len() != len
-    }
-}
+// Trait implementations removed as we're using the enum approach
 
 /// Type of mythological artifact
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
